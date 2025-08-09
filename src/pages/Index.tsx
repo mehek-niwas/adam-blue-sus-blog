@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { BlogHeader } from "@/components/BlogHeader";
 import { BlogPost, BlogPostData } from "@/components/BlogPost";
+import { SpinningAmong } from "@/components/SpinningAmong";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button-enhanced";
 import { FileText, Edit } from "lucide-react";
@@ -12,11 +13,12 @@ const Index = () => {
   const [posts, setPosts] = useState<BlogPostData[]>([]);
   const [introContent, setIntroContent] = useState<string>("");
 
-  const defaultIntroContent = `i started working for meta fresh out of college, and i recently became a tl! along the way, i picked up many things that i like to share when friends ask for advice.
+  const defaultIntroContent = `I started working for meta fresh out of college, and I recently became a TL! Along the way, I picked up many things that I often pass along when my friends ask for advice.
 
-this website is to share those thoughts :D (my friend forced me to stop sharing random google docs)
+This website is where those thoughts now live :D (my friend forced me to stop sharing random google docs)
 
-i put in a lot of care and research for many of my posts, but things might be different for you !! think of what you read here as one perspective, not the final word.`;
+I put a lot of care and research into my posts, but your experience may be different!! 
+Think of what you read here as one perspective, not the final word.`;
 
   useEffect(() => {
     const savedPosts = JSON.parse(localStorage.getItem('blog-posts') || '[]');
@@ -55,7 +57,10 @@ i put in a lot of care and research for many of my posts, but things might be di
             {/* Introduction Section */}
             <div className="text-center mb-12">
               <div className="flex items-center justify-center gap-4 mb-6">
-                <h2 className="text-3xl font-bold text-glow">hello! i am adam</h2>
+                <div className="flex items-center gap-3">
+                  <SpinningAmong variant="blue" />
+                  <h2 className="text-3xl font-bold text-glow">hello! i am adam</h2>
+                </div>
                 <Link to="/edit-intro">
                   <Button variant="outline" size="sm" className="gap-2">
                     <Edit className="w-4 h-4" />
@@ -74,14 +79,29 @@ i put in a lot of care and research for many of my posts, but things might be di
             
             <div className="text-center mb-12">
               <h1 className="text-4xl font-bold mb-4 text-white">latest posts</h1>
-              <p className="text-muted-foreground">my thoughts about stuff and things</p>
+              <p className="text-muted-foreground">Amongus Abobologos Glorbingus Amongos</p>
+              
+              {/* Row of spinning among characters */}
+              <div className="flex justify-center items-center gap-4 mt-6">
+                <SpinningAmong size="sm" />
+                <SpinningAmong size="md" />
+                <SpinningAmong size="lg" />
+                <SpinningAmong size="md" />
+                <SpinningAmong size="sm" />
+              </div>
             </div>
             
             <div className="grid gap-8">
-              {posts.map((post) => (
-                <Link key={post.id} to={`/post/${post.id}`}>
-                  <BlogPost post={post} isPreview={true} />
-                </Link>
+              {posts.map((post, index) => (
+                <div key={post.id} className="relative">
+                  <Link to={`/post/${post.id}`}>
+                    <BlogPost post={post} isPreview={true} />
+                  </Link>
+                  {/* Spinning among character for each post */}
+                  <div className="absolute -left-4 top-4">
+                    <SpinningAmong size="sm" />
+                  </div>
+                </div>
               ))}
             </div>
           </div>
