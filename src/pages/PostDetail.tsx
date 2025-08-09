@@ -48,8 +48,12 @@ const PostDetail = () => {
             </Button>
           </Link>
         </div>
-        <div className="max-w-4xl mx-auto">
-          <BlogPost post={post} isPreview={false} />
+        
+        {/* Google Docs style container */}
+        <div className="max-w-4xl mx-auto bg-background">
+          <div className="min-h-[calc(100vh-200px)] py-8">
+            <BlogPost post={post} isPreview={false} />
+          </div>
         </div>
       </main>
     </div>
