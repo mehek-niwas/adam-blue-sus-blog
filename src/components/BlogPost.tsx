@@ -103,22 +103,22 @@ export const BlogPost = ({ post, isPreview = false }: BlogPostProps) => {
                   </h3>
                 ),
                 p: ({ children, ...props }) => (
-                  <p className="mb-4 leading-relaxed text-foreground/90" {...props}>
+                  <p className="mb-4 leading-relaxed text-foreground font-inter" {...props}>
                     {children}
                   </p>
                 ),
                 ul: ({ children, ...props }) => (
-                  <ul className="mb-4 ml-6 space-y-2" {...props}>
+                  <ul className="mb-4 ml-6 space-y-2 font-inter" {...props}>
                     {children}
                   </ul>
                 ),
                 ol: ({ children, ...props }) => (
-                  <ol className="mb-4 ml-6 space-y-2" {...props}>
+                  <ol className="mb-4 ml-6 space-y-2 font-inter" {...props}>
                     {children}
                   </ol>
                 ),
                 li: ({ children, ...props }) => (
-                  <li className="leading-relaxed" {...props}>
+                  <li className="leading-relaxed font-inter" {...props}>
                     {children}
                   </li>
                 ),

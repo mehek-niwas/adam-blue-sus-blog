@@ -114,8 +114,9 @@
   }
 
   body {
-    @apply bg-background text-foreground font-mono;
-    font-family: 'JetBrains Mono', 'Fira Code', 'Monaco', monospace;
+    @apply bg-background text-foreground font-inter;
+    font-feature-settings: "cv11", "ss01";
+    font-variant-numeric: oldstyle-nums;
   }
   
   /* Blue glow utilities */
@@ -149,29 +150,36 @@
     background: hsl(var(--blue-glow) / 0.7);
   }
   
-  /* Enhanced prose styling for Google Docs feel */
+  /* Enhanced prose styling for clean startup feel */
   .prose {
     line-height: 1.7;
     font-size: 16px;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 400;
   }
   
   .prose h1 {
     font-weight: 700;
     line-height: 1.2;
+    font-family: 'Inter', system-ui, sans-serif;
   }
   
   .prose h2 {
     font-weight: 600;
     line-height: 1.3;
+    font-family: 'Inter', system-ui, sans-serif;
   }
   
   .prose h3 {
     font-weight: 600;
     line-height: 1.4;
+    font-family: 'Inter', system-ui, sans-serif;
   }
   
   .prose p {
     margin-bottom: 1.25em;
+    font-family: 'Inter', system-ui, sans-serif;
+    color: hsl(var(--foreground));
   }
   
   .prose strong {
@@ -191,5 +199,13 @@
   
   .prose a:hover {
     color: hsl(var(--blue-glow));
+  }
+  
+  .prose ul, .prose ol {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  
+  .prose li {
+    font-family: 'Inter', system-ui, sans-serif;
   }
 }
