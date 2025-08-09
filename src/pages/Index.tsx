@@ -3,10 +3,20 @@ import { Link } from "react-router-dom";
 import { BlogHeader } from "@/components/BlogHeader";
 import { BlogPost, BlogPostData } from "@/components/BlogPost";
 import { Card, CardContent } from "@/components/ui/card";
-import { FileText } from "lucide-react";
+import { Button } from "@/components/ui/button-enhanced";
+import { FileText, Edit } from "lucide-react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 const Index = () => {
   const [posts, setPosts] = useState<BlogPostData[]>([]);
+  const [introContent, setIntroContent] = useState<string>("");
+
+  const defaultIntroContent = `i started working for meta fresh out of college, and i recently became a tl! along the way, i picked up many things that i like to share when friends ask for advice.
+
+this website is to share those thoughts :D (my friend forced me to stop sharing random google docs)
+
+i put in a lot of care and research for many of my posts, but things might be different for you !! think of what you read here as one perspective, not the final word.`;
 
   useEffect(() => {
     const savedPosts = JSON.parse(localStorage.getItem('blog-posts') || '[]');
@@ -15,6 +25,10 @@ const Index = () => {
       createdAt: new Date(post.createdAt),
     }));
     setPosts(postsWithDates);
+
+    // Load introduction content
+    const savedIntro = localStorage.getItem('blog-intro');
+    setIntroContent(savedIntro || defaultIntroContent);
   }, []);
 
   return (
@@ -40,25 +54,27 @@ const Index = () => {
           <div className="max-w-4xl mx-auto space-y-8">
             {/* Introduction Section */}
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold mb-6 text-glow">Meet Adam the Meta Guy</h2>
-              <div className="max-w-2xl mx-auto space-y-4">
-                <p className="text-muted-foreground">
-                  Welcome to my corner of the meta verse! I'm Adam, and I spend my time exploring the fascinating 
-                  intersection of technology, philosophy, and the ever-evolving digital landscape that shapes our reality.
-                </p>
-                <p className="text-muted-foreground">
-                  From diving deep into emerging tech trends to questioning the nature of our increasingly connected world, 
-                  I share thoughts, insights, and discoveries that might just change how you see the digital realm around us.
-                </p>
-                <p className="text-muted-foreground">
-                  Join me as we navigate the meta layers of existence, one post at a time. 🚀
-                </p>
+              <div className="flex items-center justify-center gap-4 mb-6">
+                <h2 className="text-3xl font-bold text-glow">hello! i am adam</h2>
+                <Link to="/edit-intro">
+                  <Button variant="outline" size="sm" className="gap-2">
+                    <Edit className="w-4 h-4" />
+                    Edit
+                  </Button>
+                </Link>
+              </div>
+              <div className="max-w-2xl mx-auto">
+                <div className="prose prose-invert max-w-none text-muted-foreground">
+                  <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                    {introContent}
+                  </ReactMarkdown>
+                </div>
               </div>
             </div>
             
             <div className="text-center mb-12">
-              <h1 className="text-4xl font-bold mb-4 text-white">Latest Posts</h1>
-              <p className="text-muted-foreground">Explore Adam's thoughts from the meta verse</p>
+              <h1 className="text-4xl font-bold mb-4 text-white">latest posts</h1>
+              <p className="text-muted-foreground">my thoughts about stuff and things</p>
             </div>
             
             <div className="grid gap-8">

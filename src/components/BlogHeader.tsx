@@ -18,7 +18,7 @@ export const BlogHeader = () => {
               <h1 className="text-2xl font-bold text-glow">
                 blogs by adam the meta guy
               </h1>
-              <p className="text-sm text-muted-foreground">Thoughts from the meta verse</p>
+              <p className="text-sm text-muted-foreground">my thoughts about stuff and things</p>
             </div>
           </Link>
           
