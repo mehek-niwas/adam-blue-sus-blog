@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button-enhanced";
-import { PlusCircle } from "lucide-react";
+import { PlusCircle, Images } from "lucide-react";
 import amongUsIcon from "@/assets/amongus-blue.png";
 
 export const BlogHeader = () => {
@@ -23,6 +23,12 @@ export const BlogHeader = () => {
           </Link>
           
           <nav className="flex items-center gap-4">
+            <Link to="/gallery">
+              <Button variant="outline" className="gap-2 glow-blue-soft hover:glow-blue">
+                <Images className="w-4 h-4" />
+                Gallery
+              </Button>
+            </Link>
             <Link to="/create">
               <Button variant="glow" className="gap-2">
                 <PlusCircle className="w-4 h-4" />

@@ -8,6 +8,7 @@ import CreatePost from "./pages/CreatePost";
 import EditPost from "./pages/EditPost";
 import EditIntro from "./pages/EditIntro";
 import PostDetail from "./pages/PostDetail";
+import AmongUsGallery from "./pages/AmongUsGallery";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -24,6 +25,7 @@ const App = () => (
           <Route path="/edit/:id" element={<EditPost />} />
           <Route path="/edit-intro" element={<EditIntro />} />
           <Route path="/post/:id" element={<PostDetail />} />
+          <Route path="/gallery" element={<AmongUsGallery />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
