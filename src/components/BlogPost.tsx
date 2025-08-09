@@ -88,12 +88,12 @@ export const BlogPost = ({ post, isPreview = false }: BlogPostProps) => {
                   </blockquote>
                 ),
                 h1: ({ children, ...props }) => (
-                  <h1 className="text-3xl font-bold mt-8 mb-4 text-glow border-b border-border/30 pb-2" {...props}>
+                  <h1 className="text-3xl font-bold mt-8 mb-4 text-white border-b border-border/30 pb-2" {...props}>
                     {children}
                   </h1>
                 ),
                 h2: ({ children, ...props }) => (
-                  <h2 className="text-2xl font-bold mt-6 mb-3 text-glow" {...props}>
+                  <h2 className="text-2xl font-bold mt-6 mb-3 text-white" {...props}>
                     {children}
                   </h2>
                 ),

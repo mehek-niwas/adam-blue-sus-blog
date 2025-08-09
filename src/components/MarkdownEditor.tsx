@@ -12,12 +12,18 @@ import remarkGfm from "remark-gfm";
 
 interface MarkdownEditorProps {
   onSubmit: (post: { title: string; content: string; author: string }) => void;
+  initialData?: {
+    title: string;
+    content: string;
+    author: string;
+  };
+  isEditing?: boolean;
 }
 
-export const MarkdownEditor = ({ onSubmit }: MarkdownEditorProps) => {
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
-  const [author, setAuthor] = useState("Adam the Meta Guy");
+export const MarkdownEditor = ({ onSubmit, initialData, isEditing = false }: MarkdownEditorProps) => {
+  const [title, setTitle] = useState(initialData?.title || "");
+  const [content, setContent] = useState(initialData?.content || "");
+  const [author, setAuthor] = useState(initialData?.author || "Adam the Meta Guy");
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -65,13 +71,15 @@ export const MarkdownEditor = ({ onSubmit }: MarkdownEditorProps) => {
       author: author.trim(),
     });
 
-    // Reset form
-    setTitle("");
-    setContent("");
+    // Reset form only if not editing
+    if (!isEditing) {
+      setTitle("");
+      setContent("");
+    }
     
     toast({
-      title: "Post published!",
-      description: "Your blog post has been successfully published.",
+      title: isEditing ? "Post updated!" : "Post published!",
+      description: isEditing ? "Your blog post has been successfully updated." : "Your blog post has been successfully published.",
     });
   };
 
@@ -79,9 +87,9 @@ export const MarkdownEditor = ({ onSubmit }: MarkdownEditorProps) => {
     <div className="max-w-6xl mx-auto p-6 space-y-6">
       <Card className="glow-blue-soft">
         <CardHeader>
-          <CardTitle className="flex items-center gap-2 text-glow">
+          <CardTitle className="flex items-center gap-2 text-white">
             <FileText className="w-5 h-5" />
-            Create New Blog Post
+{isEditing ? "Edit Blog Post" : "Create New Blog Post"}
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
@@ -180,7 +188,7 @@ console.log('Code blocks are supported!');
           <div className="flex justify-end">
             <Button variant="glow" onClick={handleSubmit} className="gap-2">
               <Send className="w-4 h-4" />
-              Publish Post
+{isEditing ? "Update Post" : "Publish Post"}
             </Button>
           </div>
         </CardContent>

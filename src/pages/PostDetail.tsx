@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { BlogHeader } from "@/components/BlogHeader";
 import { BlogPost, BlogPostData } from "@/components/BlogPost";
 import { Button } from "@/components/ui/button-enhanced";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Edit } from "lucide-react";
 
 const PostDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -40,11 +40,17 @@ const PostDetail = () => {
     <div className="min-h-screen bg-background">
       <BlogHeader />
       <main className="container mx-auto px-4 py-8">
-        <div className="mb-6">
+        <div className="mb-6 flex justify-between items-center">
           <Link to="/">
             <Button variant="outline" className="gap-2">
               <ArrowLeft className="w-4 h-4" />
               Back to Home
+            </Button>
+          </Link>
+          <Link to={`/edit/${post.id}`}>
+            <Button variant="glow" className="gap-2">
+              <Edit className="w-4 h-4" />
+              Edit Post
             </Button>
           </Link>
         </div>
